@@ -1,0 +1,173 @@
+﻿@model IEnumerable<FlightProject.Models.Flight2000>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayofWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CrsDepartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CrsArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TailNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualElapsedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CrsElaspedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxiIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaxiOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cancelled)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CancellationCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Diverted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarrierDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeatherDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NasDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecurityDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LateAircraftDelay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayofWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrsDepartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrsArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TailNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualElapsedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CrsElaspedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Airtime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Origin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxiIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxiOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cancelled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CancellationCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diverted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarrierDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeatherDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NasDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LateAircraftDelay)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
