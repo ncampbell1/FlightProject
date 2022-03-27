@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightProject.Models
 {
+    //Blah
     public class Flight2002
     {
         [Column("YEAR")]
