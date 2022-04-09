@@ -26,12 +26,16 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <div>
+        <a asp-action="Index">Back to List</a>
+        </div>
     </div>
+    <div class="col-md-4">
+        <img src="https://thejetset.com/wp-content/uploads/2021/08/air-travel-demand-covid-concerns.jpeg"/>
+    <div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

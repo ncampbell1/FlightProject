@@ -3,25 +3,28 @@
 }
 
 <div class="jumbotron">
-    <h1>Contoso University</h1>
+    <h1>Welcome to Domestic Flight Delay Visualizer</h1>
+</div>
+<div class="subtitle">
+    <h1>Let's start by narrowing your search! Select a search type.</h1>
 </div>
 <div class="row">
     <div class="col-md-4">
-        <h2>Welcome to Contoso University</h2>
-        <p>
-            Contoso University is a sample application that
-            demonstrates how to use Entity Framework Core in an
-            ASP.NET Core MVC web application.
-        </p>
+        <img src="https://blog.aci.aero/wp-content/uploads/2019/03/shutterstock_745544935.jpg" width="350" height="300"/>
+        <h2>By Airport</h2>
+        <p>When choosing this option, you will be prompted to select specific airports.<p>
+        <p><a href="@Url.Action("Create","Airports")" class="btn btn-primary btn-lg">Search by Airport &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Build it from scratch</h2>
+        <img src="https://i.insider.com/60dcd040cad1220011caf5c6?width=700" width="350" height="300"/>
+        <h2>By Delay Type</h2>
         <p>You can build the application by following the steps in a series of tutorials.</p>
-        <p><a class="btn btn-default" href="https://docs.asp.net/en/latest/data/ef-mvc/intro.html">See the tutorial &raquo;</a></p>
+        <p><a href="@Url.Action("Create","Airports")" class="btn btn-primary btn-lg">Search by Delay Type &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Download it</h2>
+        <img src="https://www.portseattle.org/sites/default/files/inline-images/Airport__160329_261.jpg" width="350" height="300"/>
+        <h2>By Airline</h2>
         <p>You can download the completed project from GitHub.</p>
-        <p><a class="btn btn-default" href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/5cu-final">See project source code &raquo;</a></p>
+        <p><a href="@Url.Action("Create","Airlines")" class="btn btn-primary btn-lg">Search by Airline &raquo;</a></p>
     </div>
 </div>
