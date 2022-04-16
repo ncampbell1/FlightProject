@@ -52,7 +52,7 @@ namespace FlightProject.Models
         public int Airtime { get; set; }
 
         [Column("ARRDELAY")]
-        public int ArrivalDelay { get; set; }
+        public float ArrivalDelay { get; set; }
 
         [Column("DRPDELAY")]
         public int DepartureDelay { get; set; }

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FlightProject.Models.MaxAirline>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.ArrivalDelay)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Month)
+            <td>
+            <td>
+                @Html.DisplayFor(model => item.Year)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
