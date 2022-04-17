@@ -12,7 +12,9 @@ namespace FlightProject.Controllers
 {
     public class AirlineAvesController : Controller
     {
+
         private readonly SchoolContext _context;
+
 
         public AirlineAvesController(SchoolContext context)
         {
@@ -25,5 +27,12 @@ namespace FlightProject.Controllers
             var list = await _context.AirlineAve.ToListAsync();
             return View(list);
         }
+        [Produces("application/json")]
+        public async Task<IActionResult> FindAll()
+        {
+            var list = await _context.AirlineAve.ToListAsync();
+            return Ok(list);
+        }
     }
 }
+
