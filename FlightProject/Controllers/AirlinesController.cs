@@ -65,6 +65,23 @@ namespace FlightProject.Controllers
             return View(airline);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GotoDetails([Bind("CarrierCode,Name")] Airline airline)
+        {
+            var savedAirline = await _context.Airline.FirstOrDefaultAsync(x => x.CarrierCode == airline.CarrierCode);
+            if (savedAirline == null)
+            {
+                ModelState.AddModelError("CarrierCode", "Not found");
+                return View("Create", airline);
+            }
+            else
+            {
+                return RedirectToAction("Details", "MaxAirlines", new { id = airline.CarrierCode });
+
+            }
+        }
+
         // GET: Airlines/Edit/5
         public async Task<IActionResult> Edit(string id)
         {

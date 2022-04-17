@@ -20,10 +20,25 @@ namespace FlightProject.Controllers
         }
 
         // GET: Airlines
+        [HttpGet]
+
         public async Task<IActionResult> Index()
         {
             var list = await _context.MaxAirport.ToListAsync();
             return View(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(String id)
+        {
+            var airport = await _context.Airport.FirstOrDefaultAsync(x => x.AirportCode == id);
+            if (airport == null)
+            {
+                return View("AirportNotFound", id);
+            }
+
+            var delays = (await _context.MaxAirport.ToListAsync()).Where(x => x.Name == airport.Name).ToList();
+            return View("Index", delays);
         }
     }
 }

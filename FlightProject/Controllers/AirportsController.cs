@@ -63,7 +63,28 @@ namespace FlightProject.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(airport);
+
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GotoDetails([Bind("AirportCode,Name,City,State")] Airport airport)
+        {
+            var savedAirport = await _context.Airport.FirstOrDefaultAsync(x => x.AirportCode == airport.AirportCode);
+            if (savedAirport == null)
+            {
+                ModelState.AddModelError("AirportCode", "Not found");
+                return View("Create", airport);
+            }
+            else
+            {
+                return RedirectToAction("Details", "MaxAirports", new { id = airport.AirportCode });
+
+            }
+           
+        }
+
 
         // GET: Airports/Edit/5
         public async Task<IActionResult> Edit(string id)

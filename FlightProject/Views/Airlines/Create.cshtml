@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="GotoDetails">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="body">
                 <p>Search for a specific airline by typing in the airline code.</p>
@@ -21,7 +21,8 @@
                 <span asp-validation-for="CarrierCode" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p><a href="@Url.Action("Index","AirlineAves")" class="btn btn-primary">Continue &raquo;</a></p>
+                <button type="submit" class="btn btn-primary">Continue &raquo;</button>
+
             </div>
         </form>
         <div class="body">
