@@ -77,7 +77,7 @@ namespace FlightProject.Controllers
             }
             else
             {
-                return RedirectToAction("Details", "MaxAirlines", new { id = airline.CarrierCode });
+                return RedirectToAction("Details", "AirlineAves", new { id = airline.CarrierCode });
 
             }
         }

@@ -26,18 +26,7 @@ namespace FlightProject.Controllers
             return View(list);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Details(String id)
-        {
-            var airline = await _context.Airline.FirstOrDefaultAsync(x => x.CarrierCode == id);
-            if (airline == null)
-            {
-                return View("AirlineNotFound", id);
-            }
-
-            var delays = (await _context.MaxAirline.ToListAsync()).Where(x => x.Name == airline.Name).ToList();
-            return View("Index", delays);
-        }
+       
     }
 
 

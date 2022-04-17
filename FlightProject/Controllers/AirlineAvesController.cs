@@ -27,12 +27,20 @@ namespace FlightProject.Controllers
             var list = await _context.AirlineAve.ToListAsync();
             return View(list);
         }
-        [Produces("application/json")]
-        public async Task<IActionResult> FindAll()
+
+        [HttpGet]
+        public async Task<IActionResult> Details(String id)
         {
-            var list = await _context.AirlineAve.ToListAsync();
-            return Ok(list);
+            var airline = await _context.Airline.FirstOrDefaultAsync(x => x.CarrierCode== id);
+            if (airline == null)
+            {
+                return View("AirlineNotFound", id);
+            }
+
+            var delays = (await _context.AirlineAve.ToListAsync()).Where(x => x.CarrierCode == airline.CarrierCode).ToList();
+            return View("Index", delays);
         }
     }
 }
+
 

@@ -79,7 +79,7 @@ namespace FlightProject.Controllers
             }
             else
             {
-                return RedirectToAction("Details", "MaxAirports", new { id = airport.AirportCode });
+                return RedirectToAction("Details", "AirportAvgs", new { id = airport.AirportCode });
 
             }
            

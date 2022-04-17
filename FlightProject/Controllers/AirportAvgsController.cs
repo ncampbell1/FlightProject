@@ -25,5 +25,18 @@ namespace FlightProject.Controllers
                 var list = await _context.AirportAvg.ToListAsync();
                 return View(list);
             }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(String id)
+        {
+            var airport = await _context.Airport.FirstOrDefaultAsync(x => x.AirportCode == id);
+            if (airport == null)
+            {
+                return View("AirportNotFound", id);
+            }
+
+            var delays = (await _context.AirportAvg.ToListAsync()).Where(x => x.Name == airport.Name).ToList();
+            return View("Index", delays);
+        }
     }
 }
