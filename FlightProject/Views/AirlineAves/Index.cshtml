@@ -64,30 +64,30 @@
         });
         function drawChart(result) {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Name');
-            data.addColumn('number', 'Quantity');
+            data.addColumn('number', 'Month');
+            data.addColumn('number', 'ArrivalDelay2000');
+            data.addColumn('number', 'ArrivalDelay2001');
+            data.addColumn('number', 'ArrivalDelay2002');
             var dataArray = [];
             $.each(result, function (i, obj) {
-                dataArray.push([obj.name, obj.quantity]);
+                dataArray.push([obj.month, obj.arrivalDelay2000, obj.arrivalDelay2001, obj.arrivalDelay2002]);
             });
             data.addRows(dataArray);
-            var piechart_options = {
-                title: 'Pie Chart: How Much Products Sold By Last Night',
-                width: 400,
-                height: 300
+            var linechart_options = {
+                title: 'Airline Arrival Delays over Time',
+                hAxis: {
+                    title : "Month"
+                },
+                vAxis: {
+                    title: "Arrival Delay (in Minutes)"
+                },
+                width: 800,
+                height: 600,
+                legend: {position: 'bottom'}
             };
-            var piechart = new google.visualization.PieChart(document
-                .getElementById('piechart_div'));
-            piechart.draw(data, piechart_options);
-            var barchart_options = {
-                title: 'Barchart: How Much Products Sold By Last Night',
-                width: 400,
-                height: 300,
-                legend: 'none'
-            };
-            var barchart = new google.visualization.BarChart(document
-                .getElementById('barchart_div'));
-            barchart.draw(data, barchart_options);
+            var linechart = new google.visualization.LineChart(document
+                .getElementById('linechart_div'));
+            linechart.draw(data, linechart_options);
         }
     });
 </script>
@@ -97,7 +97,7 @@
     <h3>Google Chart in ASP.NET Core MVC</h3>
     <table class="columns">
         <tr>
-            <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+            <td><div id="linechart_div" style="border: 1px solid #ccc"></div></td>
             <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
         </tr>
     </table>

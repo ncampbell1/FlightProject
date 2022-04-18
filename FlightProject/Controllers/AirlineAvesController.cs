@@ -14,7 +14,7 @@ namespace FlightProject.Controllers
     {
 
         private readonly SchoolContext _context;
-
+        private static string _id = "";
 
         public AirlineAvesController(SchoolContext context)
         {
@@ -31,6 +31,7 @@ namespace FlightProject.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(String id)
         {
+            _id = id;
             var airline = await _context.Airline.FirstOrDefaultAsync(x => x.CarrierCode== id);
             if (airline == null)
             {
@@ -39,6 +40,22 @@ namespace FlightProject.Controllers
 
             var delays = (await _context.AirlineAve.ToListAsync()).Where(x => x.CarrierCode == airline.CarrierCode).ToList();
             return View("Index", delays);
+        }
+        
+        [Produces("application/json")]
+        public async Task<IActionResult> FindAll()
+        {
+           
+            var list2000 = (await _context.AirlineAve2000.ToListAsync()).Where(x => x.CarrierCode == _id).ToList();
+            var list2001 = (await _context.AirlineAve2001.ToListAsync()).Where(x => x.CarrierCode == _id).ToList();
+            var list2002 = (await _context.AirlineAve2002.ToListAsync()).Where(x => x.CarrierCode == _id).ToList();
+            for (int i = 0; i < list2000.Count; i++)
+            {
+                list2000[i].ArrivalDelay2001 = list2001[i].ArrivalDelay2001;
+                list2000[i].ArrivalDelay2002 = list2002[i].ArrivalDelay2002;
+            }
+            
+            return Ok(list2000);
         }
     }
 }

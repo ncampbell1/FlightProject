@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<FlightProject.Models.AirportAvg>
 
-@{
-    ViewData["Title"] = "Index";
-}
+@{ ViewData["Title"] = "Index"; }
 
 <h1>Index</h1>
 
@@ -27,22 +25,81 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.ArrivalDelay)
-            </td>
-            <td>
-                @Html.DisplayFor(model => item.Month)
-            <td>
-            <td>
-                @Html.DisplayFor(model => item.Year)
-            </td>
-           
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.ArrivalDelay)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.Month)
+    <td>
+    <td>
+        @Html.DisplayFor(model => item.Year)
+    </td>
+
+</tr>}
     </tbody>
 </table>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            dataType: "json",
+            contentType: "application/json",
+            url: '/AirportAvgs/findall',
+            success: function (result) {
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
+                google.charts.setOnLoadCallback(function () {
+                    drawChart(result);
+                });
+            }
+        });
+        function drawChart(result) {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'Month');
+            data.addColumn('number', 'ArrivalDelay2000');
+            data.addColumn('number', 'ArrivalDelay2001');
+            data.addColumn('number', 'ArrivalDelay2002');
+            var dataArray = [];
+            $.each(result, function (i, obj) {
+                dataArray.push([obj.month, obj.arrivalDelay2000, obj.arrivalDelay2001, obj.arrivalDelay2002]);
+            });
+            data.addRows(dataArray);
+            var linechart_options = {
+                title: 'Airport Arrival Delays over Time',
+                hAxis: {
+                    title : "Month"
+                },
+                vAxis: {
+                    title: "Arrival Delay (in Minutes)"
+                },
+                width: 800,
+                height: 600,
+                legend: {position: 'bottom'}
+            };
+            var linechart = new google.visualization.LineChart(document
+                .getElementById('linechart_div'));
+            linechart.draw(data, linechart_options);
+        }
+    });
+</script>
+
+<body>
+
+    <h3>Google Chart in ASP.NET Core MVC</h3>
+    <table class="columns">
+        <tr>
+            <td><div id="linechart_div" style="border: 1px solid #ccc"></div></td>
+            <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
+        </tr>
+    </table>
+
+</body>

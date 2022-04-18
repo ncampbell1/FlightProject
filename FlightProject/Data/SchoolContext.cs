@@ -41,7 +41,28 @@ namespace ContosoUniversity.Data
                     "GROUP BY a2.carrier_code, month " +
                     "ORDER BY year, month";
             modelBuilder.Entity<AirlineAve>().ToSqlQuery(airlineAveQuery).HasKey(x => new { x.Month, x.Year, x.CarrierCode });
-            
+
+            var airlineAves2000Query = "SELECT a.carrier_code CarrierCode, AVG(f0.arrdelay) arrdelay2000, month, 0 as arrdelay2001, 0 as arrdelay2002 " +
+                "FROM airlines a " +
+                "JOIN flights2000 f0 ON f0.uniquecarrier = a.carrier_code " +
+                "GROUP BY carrier_code, month " +
+                "ORDER BY month";
+            modelBuilder.Entity<AirlineAve2000>().ToSqlQuery(airlineAves2000Query).HasKey(x => new { x.Month, x.CarrierCode });
+
+            var airlineAves2001Query = "SELECT a.carrier_code CarrierCode, AVG(f1.arrdelay) arrdelay2001, month, 0 as arrdelay2000, 0 as arrdelay2002 " +
+                "FROM airlines a " +
+                "JOIN flights2001 f1 ON f1.uniquecarrier = a.carrier_code " +
+                "GROUP BY carrier_code, month " +
+                "ORDER BY month";
+            modelBuilder.Entity<AirlineAve2001>().ToSqlQuery(airlineAves2001Query).HasKey(x => new { x.Month, x.CarrierCode });
+
+            var airlineAves2002Query = "SELECT a.carrier_code CarrierCode, AVG(f2.arrdelay) arrdelay2002, month, 0 as arrdelay2000, 0 as arrdelay2001  " +
+                "FROM airlines a " +
+                "JOIN flights2002 f2 ON f2.uniquecarrier = a.carrier_code " +
+                "GROUP BY carrier_code, month " +
+                "ORDER BY month";
+            modelBuilder.Entity<AirlineAve2002>().ToSqlQuery(airlineAves2002Query).HasKey(x => new { x.Month, x.CarrierCode });
+
             var airportAvgQuery = "SELECT a.name Name, AVG(f0.arrdelay) ArrivalDelay, month, 2000 as year " +
                     "FROM airports a " +
                     "JOIN flights2000 f0 ON f0.dest = a.airport_code " +
@@ -59,6 +80,27 @@ namespace ContosoUniversity.Data
                     "ORDER BY year, month";
             modelBuilder.Entity<AirportAvg>().ToSqlQuery(airportAvgQuery).HasKey(x => new { x.Month, x.Year, x.Name });
 
+            var airportAvgQuery2000 = "SELECT a.airport_code AirportCode, AVG(f0.arrdelay) arrdelay2000, month, 0 as arrdelay2001, 0 as arrdelay2002 " +
+                    "FROM airports a " +
+                    "JOIN flights2000 f0 ON f0.dest = a.airport_code " +
+                    "GROUP BY a.airport_code, month " +
+                    "ORDER BY month";
+            modelBuilder.Entity<AirportAvg2000>().ToSqlQuery(airportAvgQuery2000).HasKey(x => new { x.Month, x.AirportCode });
+
+            var airportAvgQuery2001 = "SELECT a.airport_code AirportCode, AVG(f1.arrdelay) arrdelay2001, month, 0 as arrdelay2000, 0 as arrdelay2002 " +
+                    "FROM airports a " +
+                    "JOIN flights2001 f1 ON f1.dest = a.airport_code " +
+                    "GROUP BY a.airport_code, month " +
+                    "ORDER BY month";
+            modelBuilder.Entity<AirportAvg2001>().ToSqlQuery(airportAvgQuery2001).HasKey(x => new { x.Month, x.AirportCode });
+
+            var airportAvgQuery2002 = "SELECT a.airport_code AirportCode, AVG(f2.arrdelay) arrdelay2002, month, 0 as arrdelay2000, 0 as arrdelay2001 " +
+                    "FROM airports a " +
+                    "JOIN flights2002 f2 ON f2.dest = a.airport_code " +
+                    "GROUP BY a.airport_code, month " +
+                    "ORDER BY month";
+            modelBuilder.Entity<AirportAvg2002>().ToSqlQuery(airportAvgQuery2002).HasKey(x => new { x.Month, x.AirportCode });
+
             var delayTrendQuery = "SELECT AVG(f0.arrdelay) ArrivalDelay, AVG(f0.drpdelay) DepartDelay, month, 2000 AS year " +
                 "FROM flights2000 f0 " +
                 "GROUP BY month, year " +
@@ -72,6 +114,25 @@ namespace ContosoUniversity.Data
                 "GROUP BY month, year " +
                 "ORDER BY year, month";
             modelBuilder.Entity<DelayTrend>().ToSqlQuery(delayTrendQuery).HasKey(x => new { x.Month, x.Year, x.ArrivalDelay, x.DepartDelay });
+
+            var delayTrendQuery2000 = "SELECT AVG(f0.arrdelay) ArrivalDelay2000, AVG(f0.drpdelay) DepartureDelay2000, month, 0 as ArrivalDelay2001, 0 as ArrivalDelay2002, 0 as DepartureDelay2001, 0 as DepartureDelay2002 " +
+                "FROM flights2000 f0 " +
+                "GROUP BY month " +
+                "ORDER BY month";
+            modelBuilder.Entity<DelayTrend2000>().ToSqlQuery(delayTrendQuery2000).HasKey(x => new {x.Month});
+
+            var delayTrendQuery2001 = "SELECT AVG(f1.arrdelay) ArrivalDelay2001, AVG(f1.drpdelay) DepartureDelay2001, month, 0 as ArrivalDelay2000, 0 as ArrivalDelay2002, 0 as DepartureDelay2000, 0 as DepartureDelay2002 " +
+                "FROM flights2001 f1 " +
+                "GROUP BY month " +
+                "ORDER BY month";
+            modelBuilder.Entity<DelayTrend2001>().ToSqlQuery(delayTrendQuery2001).HasKey(x => new { x.Month });
+
+            var delayTrendQuery2002 = "SELECT AVG(f2.arrdelay) ArrivalDelay2002, AVG(f2.drpdelay) DepartureDelay2002, month, 0 as ArrivalDelay2000, 0 as ArrivalDelay2001, 0 as DepartureDelay2000, 0 as DepartureDelay2001 " +
+                "FROM flights2002 f2 " +
+                "GROUP BY month " +
+                "ORDER BY month";
+            modelBuilder.Entity<DelayTrend2002>().ToSqlQuery(delayTrendQuery2002).HasKey(x => new { x.Month });
+
 
             var maxAirlineQuery = "SELECT a.name Name, MAX(f0.arrdelay) ArrivalDelay, max_carrier.month month, 2000 AS year " +
                 "FROM airlines a " +
@@ -139,9 +200,19 @@ namespace ContosoUniversity.Data
         public DbSet<FlightProject.Models.Flight2001> Flight2001 { get; set; }
         public DbSet<FlightProject.Models.Flight2002> Flight2002 { get; set; }
         public DbSet<FlightProject.Models.AirlineAve> AirlineAve { get; set; }
+        public DbSet<FlightProject.Models.AirlineAve2000> AirlineAve2000 { get; set; }
+        public DbSet<FlightProject.Models.AirlineAve2001> AirlineAve2001 { get; set; }
+        public DbSet<FlightProject.Models.AirlineAve2002> AirlineAve2002 { get; set; }
         public DbSet<FlightProject.Models.AirportAvg> AirportAvg { get; set; }
+        public DbSet<FlightProject.Models.AirportAvg2000> AirportAvg2000 { get; set; }
+        public DbSet<FlightProject.Models.AirportAvg2001> AirportAvg2001 { get; set; }
+        public DbSet<FlightProject.Models.AirportAvg2002> AirportAvg2002 { get; set; }
         public DbSet<FlightProject.Models.DelayTrend> DelayTrend { get; set; }
+        public DbSet<FlightProject.Models.DelayTrend2000> DelayTrend2000 { get; set; }
+        public DbSet<FlightProject.Models.DelayTrend2001> DelayTrend2001 { get; set; }
+        public DbSet<FlightProject.Models.DelayTrend2002> DelayTrend2002 { get; set; }
         public DbSet<FlightProject.Models.MaxAirline> MaxAirline { get; set; }
         public DbSet<FlightProject.Models.MaxAirport> MaxAirport { get; set; }
+        
     }
 }

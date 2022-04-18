@@ -25,5 +25,23 @@ namespace FlightProject.Controllers
             var list = await _context.DelayTrend.ToListAsync();
             return View(list);
         }
+        [Produces("application/json")]
+        public async Task<IActionResult> FindAll()
+        {
+
+            var list2000 = (await _context.DelayTrend2000.ToListAsync()).ToList();
+            var list2001 = (await _context.DelayTrend2001.ToListAsync()).ToList();
+            var list2002 = (await _context.DelayTrend2002.ToListAsync()).ToList();
+            for (int i = 0; i < list2000.Count; i++)
+            {
+                list2000[i].ArrDelay2001 = list2001[i].ArrDelay2001;
+                list2000[i].ArrDelay2002 = list2002[i].ArrDelay2002;
+                list2000[i].DeptDelay2001 = list2001[i].DeptDelay2001;
+                list2000[i].DeptDelay2002 = list2002[i].DeptDelay2002;
+
+            }
+
+            return Ok(list2000);
+        }
     }
 }
