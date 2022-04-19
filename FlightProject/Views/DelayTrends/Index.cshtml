@@ -7,43 +7,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ArrivalDelay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DepartDelay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Month)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        @Html.DisplayFor(model => item.ArrivalDelay)
-    </td>
-    <td>
-        @Html.DisplayFor(model => item.DepartDelay)
-    </td>
-    <td>
-        @Html.DisplayFor(model => item.Month)
-    <td>
-    <td>
-        @Html.DisplayFor(model => item.Year)
-    </td>
 
-</tr>}
-    </tbody>
-</table>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
     $(document).ready(function () {
@@ -79,14 +43,14 @@
             var linechart_options = {
                 title: 'Delays over Time',
                 hAxis: {
-                    title : "Month"
+                    title: "Month"
                 },
                 vAxis: {
                     title: "Delay (in Minutes)"
                 },
                 width: 800,
                 height: 600,
-                legend: {position: 'bottom'}
+                legend: { position: 'bottom' }
             };
             var linechart = new google.visualization.LineChart(document
                 .getElementById('linechart_div'));
@@ -106,3 +70,43 @@
     </table>
 
 </body>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.ArrivalDelay)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.DepartDelay)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.Month)
+    <td>
+    <td>
+        @Html.DisplayFor(model => item.Year)
+    </td>
+
+</tr>
+}
+    </tbody>
+</table>
+
