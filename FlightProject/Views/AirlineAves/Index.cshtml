@@ -7,43 +7,6 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CarrierCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArrivalDelay)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Month)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        @Html.DisplayFor(model => item.CarrierCode)
-    </td>
-    <td>
-        @Html.DisplayFor(model => item.ArrivalDelay)
-    </td>
-    <td>
-        @Html.DisplayFor(model => item.Month)
-    <td>
-    <td>
-        @Html.DisplayFor(model => item.Year)
-    </td>
-
-</tr>}
-    </tbody>
-</table>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
@@ -103,3 +66,41 @@
     </table>
 
 </body>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarrierCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalDelay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.CarrierCode)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.ArrivalDelay)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.Month)
+    <td>
+    <td>
+        @Html.DisplayFor(model => item.Year)
+    </td>
+
+</tr>}
+    </tbody>
+</table>
