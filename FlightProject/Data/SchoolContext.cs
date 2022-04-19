@@ -192,6 +192,21 @@ namespace ContosoUniversity.Data
                 "ORDER BY year, month";
             modelBuilder.Entity<MaxAirport>().ToSqlQuery(maxAirportQuery).HasKey(x => new { x.ArrivalDelay, x.Month, x.Year, x.Name });
 
+            var count2000Query = "SELECT year, (SELECT COUNT(*) FROM flights2000 WHERE uniquecarrier = 'AA') AmericanCount, " +
+                "(SELECT COUNT(*) FROM flights2000 WHERE uniquecarrier = 'DL') DeltaCount, " +
+                "(SELECT COUNT(*) FROM flights2000 WHERE uniquecarrier = 'UA') UnitedCount " +
+                "FROM flights2000 " +
+                "UNION " +
+                "SELECT year, (SELECT COUNT(*) FROM flights2001 WHERE uniquecarrier = 'AA') AmericanCount, " +
+                "(SELECT COUNT(*) FROM flights2001 WHERE uniquecarrier = 'DL') DeltaCount, " +
+                "(SELECT COUNT(*) FROM flights2001 WHERE uniquecarrier = 'UA') UnitedCount " +
+                "FROM flights2001 " +
+                "UNION " +
+                "SELECT year, (SELECT COUNT(*) FROM flights2002 WHERE uniquecarrier = 'AA') AmericanCount, " +
+                "(SELECT COUNT(*) FROM flights2002 WHERE uniquecarrier = 'DL') DeltaCount, " +
+                "(SELECT COUNT(*) FROM flights2002 WHERE uniquecarrier = 'UA') UnitedCount " +
+                "FROM flights2002";
+            modelBuilder.Entity<Count>().ToSqlQuery(count2000Query).HasKey(x => new { x.AmericanCount, x.DeltaCount, x.UnitedCount });
         }
 
         public DbSet<FlightProject.Models.Airline> Airline { get; set; }
@@ -213,6 +228,7 @@ namespace ContosoUniversity.Data
         public DbSet<FlightProject.Models.DelayTrend2002> DelayTrend2002 { get; set; }
         public DbSet<FlightProject.Models.MaxAirline> MaxAirline { get; set; }
         public DbSet<FlightProject.Models.MaxAirport> MaxAirport { get; set; }
+        public DbSet<FlightProject.Models.Count> Count { get; set; }
         
     }
 }

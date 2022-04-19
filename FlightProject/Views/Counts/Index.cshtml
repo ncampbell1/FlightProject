@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FlightProject.Models.Count>
+
+@{ ViewData["Title"] = "Index"; }
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmericanCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeltaCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitedCount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(model => item.Year)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.AmericanCount)
+    </td>
+    <td>
+        @Html.DisplayFor(model => item.DeltaCount)
+    <td>
+    <td>
+        @Html.DisplayFor(model => item.UnitedCount)
+    </td>
+
+</tr>}
+    </tbody>
+</table>
+
+
